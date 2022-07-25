@@ -1,0 +1,64 @@
+version: "3.9"
+services:
+  mysqldb8:
+    container_name: mysqldb8
+    image: mysql:8
+    ports:
+      - "3366:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: ms_usuarios
+    volumes:
+      - /c/TEMPORAL-STALYN/VOLUMEN-DOCKER/mysql/mysql_db:/var/lib/mysql
+    restart: always
+    networks:
+      - red_ms_1
+
+  postgres-db:
+    container_name: postgres-db
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+       POSTGRES_PASSWORD: secret
+       POSTGRES_DB: ms_cursos
+    volumes:
+      - /c/TEMPORAL-STALYN/VOLUMEN-DOCKER/postgres/postgres_db:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - red_ms_1
+
+  ms-usuarios:
+    container_name: ms-usuarios
+    build:
+      context: ./
+      dockerfile: ./ms-usuarios/Dockerfile
+    ports:
+      - "8001:8001"
+    env_file:
+      - ./ms-usuarios/.env
+    networks:
+      - red_ms_1
+    depends_on:
+      - mysqldb8
+    restart: always
+
+  ms-cursos:
+    container_name: ms-cursos
+    build:
+      context: ./
+      dockerfile: ./ms-cursos/Dockerfile
+    ports:
+      - "8002:8002"
+    env_file:
+      - ./ms-cursos/.env
+    networks:
+      - red_ms_1
+    depends_on:
+      - postgres-db
+      - ms-usuarios
+    restart: always
+
+networks:
+  red_ms_1:
+    name: red_ms_1
