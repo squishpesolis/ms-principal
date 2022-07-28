@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-usuarios
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ms-usuarios
+  template:
+    metadata:
+      labels:
+        app: ms-usuarios
+    spec:
+      containers:
+        - image: squishpepn/usuarios:latest
+          name: usuarios
+          ports:
+            - containerPort: 8001
