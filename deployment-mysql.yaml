@@ -14,7 +14,7 @@ spec:
         app: mysql8
     spec:
       containers:
-      - image: mysql
+      - image: mysql:8
         name: mysql8
         ports:
         - containerPort: 3306

@@ -14,8 +14,8 @@ services:
     networks:
       - red_ms_1
 
-  postgres-db:
-    container_name: postgres-db
+  postgres-db14:
+    container_name: postgres-db14
     image: postgres:14-alpine
     ports:
       - "5432:5432"
@@ -55,7 +55,7 @@ services:
     networks:
       - red_ms_1
     depends_on:
-      - postgres-db
+      - postgres-db14
       - ms-usuarios
     restart: always
 
