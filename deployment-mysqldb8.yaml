@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql8
+  name: mysqldb8
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql8
+      app: mysqldb8
   strategy: {}
   template:
     metadata:
       labels:
-        app: mysql8
+        app: mysqldb8
     spec:
       containers:
       - image: mysql:8
-        name: mysql8
+        name: mysqldb8
         ports:
         - containerPort: 3306
         env:
