@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-cursos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-cursos
+  template:
+    metadata:
+      labels:
+        app: ms-cursos
+    spec:
+      containers:
+        - image: squishpepn/cursos:latest
+          name: cursos
+          ports:
+            - containerPort: 8002
