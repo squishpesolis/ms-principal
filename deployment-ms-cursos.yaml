@@ -17,3 +17,20 @@ spec:
           name: cursos
           ports:
             - containerPort: 8002
+          env:
+            - name: PORT
+              value: 8002
+            - name: DB_HOST
+              value: postgres-db14
+            - name: DB_PORT
+              value: 5432
+            - name: DB_DATABASE
+              value: ms_cursos
+            - name: DB_USERNAME
+              value: postgres
+            - name: DB_PASSWORD
+              value: secret
+            - name: USUARIOS_URL
+              value: ms-usuarios
+            - name: PORT_USUARIOS_URL
+              value: 8001
