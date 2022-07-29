@@ -1,3 +1,17 @@
+#Docker
+
+docker build -t cursos . -f .\ms-cursos\Dockerfile
+docker build -t usuarios . -f .\ms-usuarios\Dockerfile
+
+# Docker tag
+
+docker tag cursos squishpepn/cursos:latest
+docker tag usuarios squishpepn/usuarios:latest
+
+# docker push
+docker push squishpepn/cursos:latest
+docker push squishpepn/usuarios:latest
+
 #Kuberntes
 
 kubectl apply -f deployment-mysqldb8.yaml -f svc-postgres-db-14.yaml
@@ -5,3 +19,9 @@ kubectl apply -f deployment-ms-usuarios.yaml -f svc-ms-usuarios.yaml
 
 kubectl apply -f deployment-postgres-db14.yaml -f svc-postgres-db-14.yaml
 kubectl apply -f deployment-ms-cursos.yaml -f svc-ms-cursos.yaml
+
+
+# Kubernetes comands
+kubectl get pods ó deployments ó services
+kubectl logs "name_pods"
+kubectl delete deployments ó services
